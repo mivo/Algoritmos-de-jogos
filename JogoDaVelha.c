@@ -1,8 +1,7 @@
 /*      Universidade Estadual de Montes Claros - UNIMONTES
-         Descrição: Jogo da Velha Implementado
+         DescriÃ§Ã£o: Jogo da Velha Implementado
          Autora: Mivo
-         Data:   Início_ 04/02/2011 - Horário: 22:19
-                      Término_ 23/02/2011 - Horário: 22:34
+         Data:   28/03/2011
 */
 
 #include <stdio.h>
@@ -124,7 +123,7 @@
 						printf(" Posicao ocupada. \n Digite outra posicao: \t");
 						scanf("%d",&jogada); fflush(stdin);
 
-						// (OBS: optei por não usar o "goto")
+						// (OBS: optei por nÃ£o usar o "goto")
 						if ((jogada == 1) || (jogada == 2) || (jogada == 3))
 							i1 = 0;
 						if ((jogada == 4) || (jogada == 5) || (jogada == 6))
