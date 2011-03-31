@@ -11,6 +11,8 @@
 #include <dos.h>
 
 //=======================================================================
+//                                              Protótipo de Funções
+
  void Menu( void );
  void NovaJanela( void );
  void ImprimeDesenho( char matriz [3][ 3] );
@@ -20,7 +22,7 @@
  void Modelo(void);
  void CarregarJogo(void);
 //=======================================================================
-
+//                                                    Função Principal
  int main (void) {
 
     CarregarJogo();
@@ -44,6 +46,7 @@
         if ( menu == 1){
             menu=0;
 
+            // inicializa matriz com valores 'vazios'
             for ( i=0; i < 3; i++) {
                 for ( j=0; j < 3; j++) {
                     velha[i][j] = ' ';
@@ -59,10 +62,12 @@
             printf("\n\n --\n\n ");
             NovaJanela();
 
+            // Inversão de jogadores
             vez = 1;
             contador = 1;
             numPosicao = 1;
 
+            // loop para o número total de jogadas
             while (contador < 10){
                 system("cls");
                 printf("\t\t\t");
@@ -84,11 +89,14 @@
                 // Avaliando se as jogadas foram validas:
                 if (jogada > 9 || jogada < 1) {
                     do {
-                        NovaJanela();
+                        system("cls");
+                        printf("\t\t\t");
+                        Modelo();
+                        printf("\t\t\t");
                         ImprimeDesenho( velha );
                         printf(" Caractere invalido! \n Digite outra jogada: \t");
                         scanf("%d",&jogada); fflush(stdin);
-                    } while ((jogada > 9) || (jogada < 1));
+                    } while ( (jogada > 9) || (jogada < 1) );
                 }
 
                 // Definindo a coordenada de linha da escolha
@@ -120,6 +128,11 @@
                 // Caso o jogador determine uma coordenada ja usada anteriormente
                 else if ((velha[i1][j1] == 'X') || (velha[i1][j1] == 'O')) {
 					do {
+					    system("cls");
+                        printf("\t\t\t");
+                        Modelo();
+                        printf("\t\t\t");
+                        ImprimeDesenho( velha );
 						printf(" Posicao ocupada. \n Digite outra posicao: \t");
 						scanf("%d",&jogada); fflush(stdin);
 
@@ -149,6 +162,7 @@
                     } while(1);
                 }
 
+                // Funçao que avalia se houve ganhadores
                 flag = ResultadoGanhador( &jogador1Vitorias, &jogador2Vitorias, velha, jogador1, jogador2 );
                 if ( flag == 10 ){
                     menu = 0 ;
@@ -164,6 +178,7 @@
                     vez = 1;
                 contador ++;
             }
+                // Caso não haja ganhador
                 if ( contador == 10 ) {
                     save=1;
 				    system("cls");
@@ -207,6 +222,7 @@
         }
 
 //=======================================================================
+        // Caso sair
         else if ( menu == 4 ){
             menu = 0;
             printf("\n\n\t\t\t Fim de Jogo ! \n\n ");
@@ -215,15 +231,18 @@
         }
 
 //========================================================================
+        // Caso tutorial
         else if ( menu == 5){
             Tutorial();
             NovaJanela();
         }
 //========================================================================
+        // Caso reiniciar pontuações
         else if( menu ==6 ){
-             printf("\n\n\n Deseja mesmo deletar as pontuacoes existentes? \n\t 1 [sim] \t 2 [nao] \n\t >");
+             printf("\n\n\n Deseja mesmo deletar as pontuacoes existentes? \n\n\t 1 [sim] \t 2 [nao] \n\t >");
              scanf("%d", &op); fflush(stdin);
 
+            // caso um jogo já tenha sido iniciado
              if( op ==1){
                 if( (remove("GanhadoresJogoDaVelha.txt" )) != 0 ){
 					printf( "\nErro ao remover arquivo" );
@@ -235,18 +254,21 @@
 				}
                 continue;
              }
-            else if ( op == 2 )
+             // Caso contrário
+            else if ( op == 2 ){
                 continue;
-            else
+            }
+            else{
                 printf("\n\n\n Opcao Invalida! \n\n\n");
-
-                 NovaJanela();
+            }
+            NovaJanela();
              }
 //======================================================
+        // Caso menu inválido
         else {
             menu = 0;
             system("cls");
-            printf("\a\n\n\t MENU INVALIDO !! \n\n");
+            printf("\n\n\t MENU INVALIDO !! \n\n");
             printf("\t Escolha outra opcao. \t");
             NovaJanela();
             continue;
@@ -256,6 +278,9 @@
  }
 
 //=======================================================================
+//                          Corpo das Funções
+
+// Menu Principal
 void Menu(void){
     printf("\n\n\t\t Bem-Vindo (a) ao Jogo da Velha Ultimate !! \n");
     printf("\n\t\t -----------------------------------------");
@@ -263,12 +288,14 @@ void Menu(void){
     printf("\n\n\t 1 > Novo Jogo \n\t 2 > Salvar Jogo \n\t 3 > Pontuacoes \n\t 4 > Sair  \n\t 5 > Tutorial \n\t 6 > Reiniciar pontuacoes \n\n\t Opcao > ");
 }
 
+// Limpar janela
 void NovaJanela(void){
     printf("\n\n\t Pressione >ENTER< para continuar. ");
     getch(); fflush(stdin);
     system("cls");
 }
 
+// Desenho da matriz do jogo da velha
 void ImprimeDesenho( char matriz[3][ 3] ){
     int i, j;
     printf("\n\n\t\t ");
@@ -282,6 +309,7 @@ void ImprimeDesenho( char matriz[3][ 3] ){
         printf(" \n\n");
 }
 
+// Verificação se houve ganhadores
 int ResultadoGanhador ( int *jogador1Vitorias, int *jogador2Vitorias, char velha[3][3], char jogador1[], char jogador2[] ){
     if (velha[0][0] == 'X' && velha[0][1] == 'X' && velha[0][2] == 'X' ||
         velha[1][0] == 'X' && velha[1][1] == 'X' && velha[1][2] == 'X' ||
@@ -292,8 +320,8 @@ int ResultadoGanhador ( int *jogador1Vitorias, int *jogador2Vitorias, char velha
         velha[0][1] == 'X' && velha[1][1] == 'X' && velha[2][1] == 'X' ||
         velha[0][2] == 'X' && velha[1][2] == 'X' && velha[2][2] == 'X') {
             printf("\n\n %s e o vencedor.\n", jogador1);
+            (*jogador1Vitorias)++;
             return(10);
-            *jogador1Vitorias++;
     }
 	if (velha[0][0] == 'O' && velha[0][1] == 'O' && velha[0][2] == 'O' ||
         velha[1][0] == 'O' && velha[1][1] == 'O' && velha[1][2] == 'O' ||
@@ -304,12 +332,13 @@ int ResultadoGanhador ( int *jogador1Vitorias, int *jogador2Vitorias, char velha
 		velha[0][1] == 'O' && velha[1][1] == 'O' && velha[2][1] == 'O' ||
 		velha[0][2] == 'O' && velha[1][2] == 'O' && velha[2][2] == 'O') {
             printf("\n\n %s e o vencedor.\n",jogador2);
+            (*jogador2Vitorias)++;
             return(10);
-            *jogador2Vitorias++;
     }
 
 }
 
+// Salvar Dados em um arquivo
 void SalvarDados ( int jogador1Vitorias, int jogador2Vitorias, char jogador1[], char jogador2[], FILE *GanhadoresJogoDaVelha ){
     int escrita = 0;
 
@@ -333,7 +362,7 @@ void SalvarDados ( int jogador1Vitorias, int jogador2Vitorias, char jogador1[], 
     NovaJanela();
 }
 
-
+// Tutorial do Jogo da Velha
 void Tutorial(void){
     char tutorial=0;
     int i, j, numposicao=1;
@@ -341,7 +370,7 @@ void Tutorial(void){
 
     printf("\n\n\t Bem-vindo(a) ao tutorial do Jogo da Velha!\n");
     printf("\n O que voce deseja saber? \n\t ");
-    printf("\n \t 1)Como jogar \n\t 2)Como salvar o jogo \n\t 3)Como carregar um jogo \n\t 4)Nao preciso de tutorial\n");
+    printf("\n \t 1)Como jogar \n\t 2)Como salvar o jogo \n\t 3)Pontuacoes \n\t 4)Nao preciso de tutorial\n");
     printf(" Opcao: ");
     scanf("%d", &tutorial);
     system("cls");
@@ -386,6 +415,7 @@ void Tutorial(void){
                                     }
                                 }
 
+// Matriz modelo
 void Modelo (void){
     int numPosicao=1, i, j;
     char posicao[3][3]= {0,0,0,0,0,0,0,0,0};
@@ -402,6 +432,7 @@ void Modelo (void){
 	printf(" \n");
 }
 
+// Carregar Jogo (de mentirinha)
 void CarregarJogo(void){
     system("color 09");
     printf("\n\n\n\n\n\n\t\t\t\t Carregando \n\n\t\t\t\t");
