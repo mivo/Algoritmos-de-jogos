@@ -130,7 +130,6 @@
 							i1 = 1;
 						if ((jogada == 7) || (jogada == 8) || (jogada == 9))
 							i1 = 2;
-
 						if ((jogada == 1) || (jogada == 4) || (jogada == 7))
                             j1 = 0;
 						if ((jogada == 2) || (jogada == 5) || (jogada == 8))
