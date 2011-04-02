@@ -342,6 +342,7 @@ int main()
                    if( sorteioFeito == 1 ){
                        sorteioFeito=0;
                    }
+                   DesalocarLista( &lista );
                    escolha=0;
                    limiteApostas=0;
                    system("pause"); fflush(stdin);
@@ -363,6 +364,7 @@ int main()
              system("cls");
              printf("\n\n\n\t Obrigada por sua participacao!!\n\n");
              printf("\n\t BOA SORTE!!\n\n\n\n");
+             DesalocarLista( &lista );
              system("pause");
              exit(0);
             }
@@ -442,7 +444,7 @@ int main()
 //======================== Estruturas das Funçoes ==============================
 //=========================================================================
 
-// ____________________ Funções de lista _______________________________________
+// ___________________________ Funções de lista _______________________________________
 
 
 int Vazia ( Posicao Lista ){
@@ -467,26 +469,29 @@ void InserirCelula ( Apostador item, Posicao *Lista ){
 }
 
 // Esta função retira todas as células, exceto a célula cabeça
-void RetirarCelula( Posicao *Lista/*, int chave*/ ){
-     Apontador aux, q;
-     aux = Lista -> primeiro;
-     q = aux -> prox;
+void DesalocarLista( Posicao *Lista ){
+    Apontador aux,tmp;
 
-     if( Vazia(*Lista) || aux==NULL || aux->prox==NULL ){
-         printf("\n\n Erro! A lista esta vazia ! \n\n");
-         return;
-     }
+    if( Vazia(*Lista) == 1){
+        printf("\n Ocorreu um erro inesperado. O programa será encerrado.\t < press enter>" );
+        getch();
+        exit;
+    }
 
-     while( q!=NULL ){
-        aux -> prox = q -> prox;
-		q -> prox -> ant = aux -> prox -> ant;
-        if (aux->prox == NULL){
-            Lista->ultimo = aux;
-        }
-        free(q);
-		q = q->prox;
-		aux = aux -> prox;
-	 }
+    tmp = Lista->ultimo;
+    aux = tmp->ant;
+    while(aux != NULL){
+        Lista->ultimo = aux;
+        aux = aux->ant;
+        free(tmp);
+        tmp = Lista->ultimo;
+        printf("\n ok");
+    }
+    free(tmp);
+   /* if (op != 0) {
+		IniciarLista(Lista);
+    }*/
+    printf("\n Lista desalocada.");
 }
 
 void VisualizarLista ( Posicao Lista ){
