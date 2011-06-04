@@ -11,7 +11,7 @@
 #include <dos.h>
 
 //=======================================================================
-//                                              Protótipo de Funções
+//           Protótipo de Funções
 
  void Menu( void );
  void NovaJanela( void );
@@ -21,14 +21,19 @@
  void Tutorial(void);
  void Modelo(void);
  void CarregarJogo(void);
+
 //=======================================================================
-//                                                    Função Principal
+//               Função Principal
+
  int main (void) {
 
+    // Titulo
     CarregarJogo();
     system("title # Jogo da Velha Ultimate_by mivo ");
     system("color 0f");
 
+
+    // Declaração de variáveis
     char velha[3][3], X, O, jogador1[20], jogador2[20];
 	int i, j, escolha=0, vez=1, jogada=0, numPosicao=1, menu =0 ;
 	int i1, j1,contador=1, flag=0;
@@ -37,7 +42,9 @@
     char c;
     FILE *GanhadoresJogoDaVelha;
 
+    // Inicio do programa
 	do{
+	    // Imprime menu e armazena a opção do usuário
         Menu();
         scanf("%d", & menu); fflush(stdin);
         system("cls");
@@ -53,6 +60,7 @@
                 }
             }
 
+            // Armazena os dados dos jogadores
             printf("\n Jogador 1, qual o seu nome? ");
             gets(jogador1); fflush(stdin);
             printf("\n Jogador 2, qual o seu nome? ");
@@ -62,12 +70,13 @@
             printf("\n\n --\n\n ");
             NovaJanela();
 
-            // Inversão de jogadores
+            // Reinicialização de variáveis
             vez = 1;
             contador = 1;
             numPosicao = 1;
 
-            // loop para o número total de jogadas
+            // loop para o número total de jogadas (menores que dez, uma
+            // vez que a matriz é de 3x3)
             while (contador < 10){
                 system("cls");
                 printf("\t\t\t");
@@ -79,10 +88,12 @@
                 if (vez == 1) {
                     printf("\n\n %s digite sua jogada: \t",jogador1);
                 }
+
                 if (vez == 2) {
                     printf("\n %s digite sua jogada: \t",jogador2);
                 }
 
+                // Armazena a posicao da jogada
                 jogada = 0;
                 scanf("%d", &jogada); fflush(stdin);
 
@@ -187,7 +198,7 @@
 				}
     }
 
-//=======================================================================
+//===============================
         //  caso salvar o jogo
         else if ( menu == 2 ){
             if( save==1 ){
@@ -201,7 +212,7 @@
             }
         }
 
-//=======================================================================
+//====================================
         // caso visualizar pontuacoes
         else if ( menu == 3 ){
             menu = 0;
@@ -263,7 +274,7 @@
             }
             NovaJanela();
              }
-//======================================================
+//==============================
         // Caso menu inválido
         else {
             menu = 0;
