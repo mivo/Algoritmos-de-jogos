@@ -89,7 +89,7 @@ void CalcularAcertos( Posicao *Lista, float quadra, float quina, float sena, int
 
 
 //==========================================================================
-//========================= Função Principal ===================================
+//========================= Função Principal ===============================
 //==========================================================================
 
 int main()
@@ -157,7 +157,7 @@ int main()
              }
          }
 
-//______________________________________________________________________________
+//===============
          // Caso escolha 1: Iniciando um concurso: obrigatorio.
 
          // se o concurso nao estiver em andamento.
@@ -180,8 +180,8 @@ int main()
          }
          system("cls");
 
-//______________________________________________________________________________
-
+//==================
+        // Caso inserir candidatos na fila de apostadores
         if ( escolha ==2){
 
              // Implementaçao de fila. Os dados serao armazenados em uma celulaFila e,
@@ -271,7 +271,7 @@ int main()
                       }
                    }
                    item.bilhete += 1;
-//                   item.chave += 1;
+                   //item.chave += 1;
                    Enfileira( item, &fila );
                    limiteApostas++;
              }
@@ -289,7 +289,7 @@ int main()
              system("cls");
         }
 
-//______________________________________________________________________________
+//=========================
 // Caso realisar sorteio
          if( escolha == 3 ){
 
@@ -356,8 +356,8 @@ int main()
                   continue;
              }
          }
-//______________________________________________________________________________
 
+//============================
          // Caso sair do programa.
          if( escolha == 4 ){
 
@@ -369,8 +369,7 @@ int main()
              exit(0);
             }
 
-//______________________________________________________________________________
-
+//============================
         // Inserir na lista os dados dos apostadores.
         if ( escolha== 5 ){
 
@@ -408,8 +407,8 @@ int main()
             }
         }
 
-//______________________________________________________________________________
-
+//==========================
+        // Caso visualizar lista
         if ( escolha == 6 ){
                printf("\n\n");
                VisualizarLista( lista );
@@ -418,12 +417,12 @@ int main()
                system("cls");
         }
 
-//______________________________________________________________________________
-
+//==========================
+        // Caso visualizar fila
         if ( escolha == 7 ){
            if( !Vazia2(fila)){
                Imprime( fila );
-               //printf("\n\n Lista vazia!\n\n");
+               //printf("\n\n Fila vazia!\n\n");
                system("pause"); fflush(stdin);
                system("cls");
            }
@@ -441,11 +440,11 @@ int main()
 
 
 //=========================================================================
-//======================== Estruturas das Funçoes ==============================
+//======================== Estruturas das Funçoes =========================
 //=========================================================================
 
-// ___________________________ Funções de lista _______________________________________
 
+// ==== Funções de lista ===
 
 int Vazia ( Posicao Lista ){
      return ( Lista.primeiro == Lista.ultimo );
@@ -519,7 +518,7 @@ void VisualizarLista ( Posicao Lista ){
 }
 
 
-//========================== Funções de fila ========================================
+//=== Funções de fila ===
 
 // gera a primeira cell da fila( FFVazia = faz fila vazia ).
 void FFVazia( PosicaoFila *Fila){
@@ -577,7 +576,7 @@ void Imprime( PosicaoFila Fila ){
   }
 }
 
-//======================= Outras funções =============================
+//=== Outras funções ====
 
 // Mostrar o menu principal.
 void MostrarMenu( void ){
@@ -615,6 +614,7 @@ void TabelaDEapostas ( void ){
     printf(" ____________________________________________________________________\n\n\n");
 }
 
+// Comparar cartelas dos candidatos e a gerada pelo programa
 void CompararCartelas ( Posicao *Lista, int sorteio[] ){
      int i, j;
      Apontador aux;
@@ -633,6 +633,7 @@ void CompararCartelas ( Posicao *Lista, int sorteio[] ){
      }
 }
 
+// Calcular os acertos de cada participante
 void CalcularAcertos( Posicao *Lista, float quadra, float quina, float sena, int *acertoQuadra, int *acertoQuina, int*acertoSena, float *acumulado ){
 
     Apontador aux;
@@ -670,6 +671,7 @@ void CalcularAcertos( Posicao *Lista, float quadra, float quina, float sena, int
     }
 }
 
+// Calcula o valor da aposta de cada participante
 float valorAposta( int numeroTotal){
     float valor;
     if( numeroTotal == 6){
@@ -705,7 +707,7 @@ float valorAposta( int numeroTotal){
     return( valor );
 }
 
-
+// Sorteia os numeros da cartela do programa
 void sorteioAleatorio( int vet[], int limite ){
     int cont=0,tmp,cont2=0,i,j;
     srand(time(NULL));
