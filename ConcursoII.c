@@ -1,11 +1,11 @@
 /* UNIVERSIDADE ESTADUAL DE MONTES CLAROS - UNIMONTES
-    Centro de CiÍncias Exatas e TecnolÛgicas
-    Departamento de CiÍncias da ComputaÁ„o
-    Curso de Sistemas de InformaÁ„o
+    Centro de Ci√™ncias Exatas e Tecnol√≥gicas
+    Departamento de Ci√™ncias da Computa√ß√£o
+    Curso de Sistemas de Informa√ß√£o
 
     Professor: Renato Cota
-    Academicos: Mariellen Ivo e AntÙnio Oliveira
-    DescriÁ„o: Vestibular Unimontes 2011
+    Academicos: Mariellen Ivo e Ant√¥nio Oliveira
+    Descri√ß√£o: Vestibular Unimontes 2011
     Data: 30/06/2011
 */
 
@@ -30,7 +30,7 @@ typedef struct{
 }candidato;
 
 //===============================================================================
-//                  ESTRUTURAS DE ¡RVORE SBB
+//                  ESTRUTURAS DE √ÅRVORE SBB
 
 typedef enum {
   Vertical, Horizontal
@@ -165,7 +165,7 @@ void Particao(int esq, int dir, int *i, int *j, TipoLista *Lista);
 void QuickSortLista( TipoLista *Lista, int tamanho);
 
 /*******************************************************************/
-/************************ FUN«√O PRINCIPAL ************************/
+/************************ FUN√á√ÉO PRINCIPAL ************************/
 /*****************************************************************/
 
 int main (void){
@@ -174,7 +174,7 @@ int main (void){
         system("color 0f");
 
 
-// DeclaraÁ„o de vari·veis comuns
+// Declara√ß√£o de vari√°veis comuns
     int numero_concurso, numero_vagas, numero_questoes;
     int confirma, op, select, var, achou;
     char data[15];
@@ -182,27 +182,27 @@ int main (void){
     char *gabarito_oficial;
     int flag=0, verifica_concurso=1;
 
-// DeclaraÁ„o de contadores
+// Declara√ß√£o de contadores
     int i,j, k, l=0, cont_linha=0, hash=0;
     char c;
 
-// DeclaraÁ„o de vari·veis para arquivo
+// Declara√ß√£o de vari√°veis para arquivo
     FILE *configuracao_concurso, *ultimo_concurso;
     FILE *arq_lista, *arq_fila;
     FILE *arquivo2;
 
     char string_tmp[100], caractere[10];
 
-// DeclaraÁ„o de vari·veis para lista e fila
+// Declara√ß√£o de vari√°veis para lista e fila
     candidato ficha_pessoal, X;
     TipoLista relacao_candidatos_lista;
     TipoFila relacao_candidatos_fila;
 
-// DeclaraÁ„o de vari·veis para Arvores SBB
+// Declara√ß√£o de vari√°veis para Arvores SBB
     ApontadorNo Arvore_inscricao;
     ApontadorNo Arvore_nomes;
 
-// DeclaraÁ„o de vari·veis para Tabela Hash
+// Declara√ß√£o de vari√°veis para Tabela Hash
     TipoLista Hash_inscricao[MAX];
     TipoLista Hash_nome[MAX];
     int posicao;
@@ -239,7 +239,7 @@ int main (void){
         fclose(arquivo2);
         // Abre o arquivo para leitura/escrita
         if((arquivo2 =fopen("Ficha dos Candidatos.txt","r+"))!=NULL){
-            // Caso houver um espaÁo em branco no inÌcio do arquivo
+            // Caso houver um espa√ßo em branco no in√≠cio do arquivo
             while ((c = fgetc(arquivo2)) != EOF ){
                 if( c == '\n'){
                     // Salva uma hash na primeira linha do arquivo
@@ -254,9 +254,9 @@ int main (void){
         }
     }
 
-            /******* Carregando ConfiguraÁıes do Concurso ********/
+            /******* Carregando Configura√ß√µes do Concurso ********/
 
-    //Carregando os dados das configuraÁıes do ˙ltimo concurso
+    //Carregando os dados das configura√ß√µes do √∫ltimo concurso
     if(((configuracao_concurso = fopen("configuracao_concurso.txt","r") ) != NULL ) && ultimo_concurso!=0){
 
         while ((c = fgetc(configuracao_concurso)) != EOF ){
@@ -264,7 +264,7 @@ int main (void){
             l=0;
             if(c == '#'){
                 hash++;
-                // P·ra na posicao da ultima #
+                // P√°ra na posicao da ultima #
                 if( hash == numero_concurso){
                     l=1;
                     break;
@@ -277,9 +277,9 @@ int main (void){
             // Coloca o cursor no arquivo de onde parou de ler as #
             fseek (configuracao_concurso,0, SEEK_CUR);
 
-            // Pega os dados de configuraÁ„o do arquivo e passa para as vari·veis
-            // Pega linha a linha com o fgets e passa para a vari·vel com o sscanf
-            // Obs: a primeira linha È um #, ent„o, saltamo-la
+            // Pega os dados de configura√ß√£o do arquivo e passa para as vari√°veis
+            // Pega linha a linha com o fgets e passa para a vari√°vel com o sscanf
+            // Obs: a primeira linha √© um #, ent√£o, saltamo-la
             fgets(string_tmp, 100, configuracao_concurso); // #
             fgets(string_tmp, 100, configuracao_concurso); // promotor do concurso
             sscanf(string_tmp,"%s",&promotor_concurso); fflush(stdin);
@@ -289,10 +289,10 @@ int main (void){
             sscanf(string_tmp,"%s",&nome_cargo); fflush(stdin);
             fgets(string_tmp, 100, configuracao_concurso); // numero de vagas
             sscanf(string_tmp,"%d",&numero_vagas); fflush(stdin);
-            fgets(string_tmp, 100, configuracao_concurso); // numero de questıes
+            fgets(string_tmp, 100, configuracao_concurso); // numero de quest√µes
             sscanf(string_tmp,"%d",&numero_questoes); fflush(stdin);
 
-            // Aloca o espaÁo para o gabarito
+            // Aloca o espa√ßo para o gabarito
             gabarito_oficial = (char*) malloc (numero_questoes*sizeof(char));
 
             // Preenche o gabarito
@@ -311,7 +311,7 @@ int main (void){
         fclose(configuracao_concurso);
     }
 
-   // Caso o arquivo n„o exista, a condiÁ„o acima ser· ignorada, pois n„o h· dados a serem carregados
+   // Caso o arquivo n√£o exista, a condi√ß√£o acima ser√° ignorada, pois n√£o h√° dados a serem carregados
 
     //  Preenchendo a lista com dados dos candidatos, abre o arquivo somente leitura
     if( (arq_lista = fopen("Ficha dos Candidatos.txt","r") ) != NULL && numero_concurso!=0 ){
@@ -321,7 +321,7 @@ int main (void){
             // contando as # ate chegar nos dados do primeiro candidato do ultimo concurso
             if(c == '#'){
                 hash++;
-                // P·ra na posicao da ultima #
+                // P√°ra na posicao da ultima #
                 if( hash == numero_concurso){
                     break;
                 }
@@ -331,7 +331,7 @@ int main (void){
         // Coloca o cursor no arquivo de onde parou de ler as #
 		fseek (arq_lista,0, SEEK_CUR);
 
-        // Conta linhas atÈ o fim do arquivo
+        // Conta linhas at√© o fim do arquivo
         while ((c = fgetc(arq_lista)) != EOF ){
             if(c == '\n'){
                 cont_linha++;
@@ -341,7 +341,7 @@ int main (void){
         // Volta ao inicio do arquivo
         c=0;
         fseek(arq_lista,0, SEEK_SET);
-        // Contagem do n˙mero de candidatos com base no numero de linhas
+        // Contagem do n√∫mero de candidatos com base no numero de linhas
         cont_linha /=(6+numero_questoes);
 
         // Percorre novamente o arquivo desde o inicio
@@ -351,7 +351,7 @@ int main (void){
             // contando as # ate chegar nos dados do primeiro candidato do ultimo concurso
             if(c == '#'){
                 hash++;
-                // P·ra na posicao da ultima #
+                // P√°ra na posicao da ultima #
                 if( hash == numero_concurso){
                     break;
                 }
@@ -362,11 +362,11 @@ int main (void){
 		//fseek (arq_lista,0, SEEK_CUR);
         for(l=0; l<cont_linha; l++){
 
-            // Pega os dados de configuraÁ„o do arquivo e passa para as vari·veis
-            // Pega linha a linha com o fgets e passa para a vari·vel com o sscanf
-            // Obs: a primeira linha È um #, no caso do primeiro concurso,
-            // È um espaÁo, ent„o, saltamo-la
-            fgets(string_tmp, 100, arq_lista);  fflush(stdin);// # ou <espaÁo>
+            // Pega os dados de configura√ß√£o do arquivo e passa para as vari√°veis
+            // Pega linha a linha com o fgets e passa para a vari√°vel com o sscanf
+            // Obs: a primeira linha √© um #, no caso do primeiro concurso,
+            // √© um espa√ßo, ent√£o, saltamo-la
+            fgets(string_tmp, 100, arq_lista);  fflush(stdin);// # ou <espa√ßo>
 
             fgets(ficha_pessoal.nome, 100, arq_lista); // Nome completo do candidato
             ficha_pessoal.nome[strlen(ficha_pessoal.nome)-1]='\0';
@@ -374,12 +374,12 @@ int main (void){
             sscanf(string_tmp,"%d",&ficha_pessoal.idade);
             fgets(string_tmp, 100, arq_lista); // Cargo do Candidato
             sscanf(string_tmp,"%s",&ficha_pessoal.cargo);
-            fgets(string_tmp, 100, arq_lista); // Numero de inscriÁ„o do candidato
+            fgets(string_tmp, 100, arq_lista); // Numero de inscri√ß√£o do candidato
             sscanf(string_tmp,"%d",&ficha_pessoal.numero_de_inscricao);
-            fgets(string_tmp, 100, arq_lista); // PontuaÁ„o do candidato
+            fgets(string_tmp, 100, arq_lista); // Pontua√ß√£o do candidato
             sscanf(string_tmp,"%d",&ficha_pessoal.pontuacao);
 
-            // Aloca o espaÁo para o gabarito
+            // Aloca o espa√ßo para o gabarito
             ficha_pessoal.gabarito = (char*) malloc (numero_questoes*sizeof(char));
 
             // Preenche o gabarito
@@ -412,7 +412,7 @@ int main (void){
         // Depois de carregar todos os dados, fecha o arquivo
         fclose(arq_lista);
     }
-    // Caso o arquivo n„o exista, a condiÁ„o acima ser· ignorada, pois n„o h· dados a serem carregados
+    // Caso o arquivo n√£o exista, a condi√ß√£o acima ser√° ignorada, pois n√£o h√° dados a serem carregados
 
 /**************** Fim do processo de carregamento de Dados ******************/
     apresentacao();
@@ -435,10 +435,10 @@ int main (void){
 
         if( op == 1 ){
 
-            // verificar se h· um concurso iniciado (dados carregados)
+            // verificar se h√° um concurso iniciado (dados carregados)
             flag = Desalocar(&relacao_candidatos_lista, &relacao_candidatos_fila, &verifica_concurso, &Arvore_inscricao, &Arvore_nomes);
-            //A flag retorna 1 caso os dados sejam deletados, do contr·rio retorna 0
-            // Assim, a tabela tambÈm ser· desalocada
+            //A flag retorna 1 caso os dados sejam deletados, do contr√°rio retorna 0
+            // Assim, a tabela tamb√©m ser√° desalocada
             if(flag==1){
                 for( i=0; i<MAX; i++ ){
                     DesalocaHash(&Hash_inscricao[i]);
@@ -525,7 +525,7 @@ int main (void){
                     IniciarLista(&Hash_nome[i]);
                 }
 
-                // Armazenando as configuraÁıes do novo concurso
+                // Armazenando as configura√ß√µes do novo concurso
                 fflush(stdin);
                 system("color 0f");
                 printf("\n Preencha os dados abaixo: \n");
@@ -549,7 +549,7 @@ int main (void){
                     printf("\xcd");
                 printf("\xbc\n");
 
-                // Alocando espaÁo para armazenar o gabarito oficial
+                // Alocando espa√ßo para armazenar o gabarito oficial
                 gabarito_oficial = (char*) malloc ( numero_questoes*sizeof(char) );
 
                 // Armazenando o gabarito oficial
@@ -559,8 +559,8 @@ int main (void){
                     gabarito_oficial[i] = VerificaCaracter(gabarito_oficial[i]);
                 }
 
-                // Salvando em arquivo as configuraÁıes do concurso, os dados ser„o sempre salvos
-                // no final do arquivo, e o concurso n„o poder· ser acessado se n„o for o ultimo
+                // Salvando em arquivo as configura√ß√µes do concurso, os dados ser√£o sempre salvos
+                // no final do arquivo, e o concurso n√£o poder√° ser acessado se n√£o for o ultimo
                 if( (configuracao_concurso = fopen("Configuracao_concurso.txt", "a")) !=NULL ){
 
                    fprintf( configuracao_concurso, "#");
@@ -581,9 +581,9 @@ int main (void){
                 }
             }
 
-        // Caso o usu·rio opte por continuar um concurso, as opÁıes j· estar„o disponÌveis
-        // pois os dados s„o automaticamente carregados no inÌcio do programa. Ent„o,
-        // basta que ele continue normalmente a utilizar o programa, passando para as opÁıes
+        // Caso o usu√°rio opte por continuar um concurso, as op√ß√µes j√° estar√£o dispon√≠veis
+        // pois os dados s√£o automaticamente carregados no in√≠cio do programa. Ent√£o,
+        // basta que ele continue normalmente a utilizar o programa, passando para as op√ß√µes
         // seguintes.
         NovaTecla();
         }
@@ -625,7 +625,7 @@ int main (void){
                 printf("\n Uma questao em branco ou outra resposta\n qualquer invalidara a mesma. \n\n");
                 printf("Digite o seu gabarito: ");
 
-                // Alocando espaÁo para armazenar o gabarito do candidato
+                // Alocando espa√ßo para armazenar o gabarito do candidato
                 ficha_pessoal.gabarito = (char*) malloc (numero_questoes*sizeof(char));
 
                 // Armazenando o gabarito do candidato
@@ -640,7 +640,7 @@ int main (void){
 
                 system("cls");
 
-                // ConfirmaÁ„o dos dados
+                // Confirma√ß√£o dos dados
 
                 printf("\n Cargo: %s\t\t",ficha_pessoal.cargo);
                 printf("\n Nome: %s",ficha_pessoal.nome);
@@ -665,11 +665,11 @@ int main (void){
                 scanf("%d",&op); fflush(stdin);
             }while(op==2);
 
-            //  Corrigir provas, ou seja, calcular pontuaÁoes e modificar estes valores na lista
+            //  Corrigir provas, ou seja, calcular pontua√ßoes e modificar estes valores na lista
             // Lembrando que:
-            //- cada quest„o certa o candidato ganha 3 pontos;
-            //- cada quest„o errada o candidato perde 1 ponto;
-            //- cada quest„o em branco o candidato n„o perde nem ganha pontos.
+            //- cada quest√£o certa o candidato ganha 3 pontos;
+            //- cada quest√£o errada o candidato perde 1 ponto;
+            //- cada quest√£o em branco o candidato n√£o perde nem ganha pontos.
             ficha_pessoal.pontuacao = CompararGabarito ( ficha_pessoal.gabarito, gabarito_oficial, numero_questoes );
 
             // Preenche uma celula da lista com os dados do candidato
@@ -695,7 +695,7 @@ int main (void){
             NovaTecla();
         }
 
-        // ========= OP«√O 3: Encerrar o concurso =====================
+        // ========= OP√á√ÉO 3: Encerrar o concurso =====================
         if ( op == 3 ){
         // Caso nao haja nenhuma inscricao para o concurso
             if(TesteListaVazia(relacao_candidatos_lista)== 1 ){
@@ -705,7 +705,7 @@ int main (void){
               c=11;
             }
             verifica_concurso=0;
-            // caso nao haja inscriÁoes nada È salvo.
+            // caso nao haja inscri√ßoes nada √© salvo.
             if( c==11){
                 // Salva o numero do ultimo concurso
                 if( (ultimo_concurso = fopen("ultimo_concurso.txt","w+") ) != NULL ){
@@ -768,7 +768,7 @@ int main (void){
           verifica_concurso=0;
         }
 
-        // === OP«√O 4: Visualizar lista de Aprovados =================
+        // === OP√á√ÉO 4: Visualizar lista de Aprovados =================
         if ( op == 4 ){
             system("cls");
             // Imprime os dados da fila
@@ -778,7 +778,7 @@ int main (void){
             NovaTecla();
         }
 
-        // === OP«√O 5: Visualizar lista de Espera =================
+        // === OP√á√ÉO 5: Visualizar lista de Espera =================
         if ( op == 5 ){
             system("cls");
             // Imprime os dados da lista
@@ -787,7 +787,7 @@ int main (void){
             NovaTecla();
         }
 
-        // === OP«√O 6: Visualizar os historicos de arquivo  =================
+        // === OP√á√ÉO 6: Visualizar os historicos de arquivo  =================
         if ( op == 6 ){
 
             if( (arq_fila = fopen("Lista_de_aprovados.txt","r")) != NULL){
@@ -908,7 +908,7 @@ int main (void){
             }
         }
 
-        // === OP«√O 9: Sair do Programa  =================
+        // === OP√á√ÉO 9: Sair do Programa  =================
         if ( op == 9 ){
                 break;
         }
@@ -926,10 +926,10 @@ int main (void){
 }
 
 /*****************************************************************/
-/******************* CORPO DAS FUN«’ES **************************/
+/******************* CORPO DAS FUN√á√ïES **************************/
 /****************************************************************/
 
-//                          FUN«’ES DE LISTA
+//                          FUN√á√ïES DE LISTA
 
 void IniciarLista( TipoLista *Lista ){
     Lista -> primeiro = (Apontador)malloc(sizeof(Celula));
@@ -953,9 +953,9 @@ void InserirCelula(TipoLista *Lista ,candidato X){
     Lista -> ultimo -> prox = NULL;
 }
 
-// FunÁ„o que chama um candidato da lista de espera do vestibular
+// Fun√ß√£o que chama um candidato da lista de espera do vestibular
 void RetirarCelula( TipoLista *Lista, candidato *X){
-    Apontador aux, aux2; // s„o ponteiros auxiliares para percorrer a lista
+    Apontador aux, aux2; // s√£o ponteiros auxiliares para percorrer a lista
 
     if(TesteListaVazia(*Lista) == 1){
         system("color 4f");
@@ -965,7 +965,7 @@ void RetirarCelula( TipoLista *Lista, candidato *X){
 
     aux = Lista -> primeiro -> prox;
 
-    // Se sÛ houver uma cÈlula alÈm da "cabeÁa", quer dizer que seu prox È NULL
+    // Se s√≥ houver uma c√©lula al√©m da "cabe√ßa", quer dizer que seu prox √© NULL
     if( aux -> prox == NULL ){
         *X = aux -> item;
         Lista -> ultimo = Lista -> primeiro;
@@ -1073,10 +1073,10 @@ int Desalocar( TipoLista *Lista, TipoFila *Fila, int *verifica_concurso, Apontad
 
             // Parte para desalocar fila FIM
             //==============================
-            // Parte de desalocar as ·rvores SBB inicio
+            // Parte de desalocar as √°rvores SBB inicio
             DesalocaArvore(Arvore_inscricao);
             DesalocaArvore(Arvore_nomes);
-            // Parte de desalocar as ·rvores SBB fim
+            // Parte de desalocar as √°rvores SBB fim
 
             return(1);
         }
@@ -1090,7 +1090,7 @@ int Desalocar( TipoLista *Lista, TipoFila *Fila, int *verifica_concurso, Apontad
 }
 
 /*****************************************************************/
-//                   FUN«’ES DE FILA
+//                   FUN√á√ïES DE FILA
 
 void IniciarFila ( TipoFila *Fila ){
     Fila->primeiroFila = (ApontadorFila) malloc(sizeof(CelulaFila));
@@ -1157,7 +1157,7 @@ void ImprimeFila( TipoFila Fila ){
 
 
 //======================================================================
-//================ FUN«’ES PARA LAYOUT E OUTRAS ========================
+//================ FUN√á√ïES PARA LAYOUT E OUTRAS ========================
 
 void ImprimeMenu(void){
     int i;
@@ -1309,7 +1309,7 @@ int CompararGabarito ( char gabarito_candidato[], char gabarito_oficial[], int n
 }
 
 //================================================================================
-//====================== FunÁıes para o Quicksort ================================
+//====================== Fun√ß√µes para o Quicksort ================================
 
 int ContarCelulas ( TipoLista Lista){
     int i=0;
@@ -1380,16 +1380,16 @@ void Particao(int esq, int dir, int *i, int *j, TipoLista *Lista){
 
     pivo=aux_pivo->item.pontuacao;
 
-    // ComparaÁıes
+    // Compara√ß√µes
     do{
 
-        // Confere se o item da esquerda È maior que o pivo
+        // Confere se o item da esquerda √© maior que o pivo
         while(pivo < aux->item.pontuacao){
             (*i)++;
             aux=aux->prox;
         }
 
-        // Confere se o item da direita È menor que o pivo
+        // Confere se o item da direita √© menor que o pivo
         while(pivo > aux2->item.pontuacao){
             (*j)--;
             aux2= aux2->ant;
@@ -1808,7 +1808,7 @@ void IInsere_nome(candidato x, ApontadorNo *Ap, Inclinacao *IAp, short *Fim) {
   }
 
   // se o primeiro nome for menor que o segundo nome
-  // este ser· inserido a direita
+  // este ser√° inserido a direita
   if (strcmpi(x.nome,(*Ap)->Reg.nome)> 0) {
   	IInsere_nome(x, &(*Ap)->Esq, &(*Ap)->BitE, Fim);
     if (*Fim)
