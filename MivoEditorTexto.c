@@ -119,6 +119,7 @@ void Empilha(char x , TipoPilha *Pilha){
         system("color 1f");
         printf ( "\n\n\t Erro : Numero maximo de caracteres atingido. \n\n\t" );
         system("pause"); fflush(stdin);
+        return;
     }
     else{
         Pilha->Topo++;
@@ -132,10 +133,13 @@ void Desempilha(TipoPilha *Pilha){
         system("color 1f");
         printf ( "\n\n\t Erro : Nao ha caracteres disponiveis. \n\n\t" );
         system("pause"); fflush(stdin);
+        return;
     }
     else{
-        Pilha->Item[Pilha->Topo].letra = '\0';
-        Pilha->Topo = Pilha->Topo --;
+        while(Pilha->Topo>0){
+            Pilha->Item[Pilha->Topo].letra = '\0';
+            Pilha->Topo = Pilha->Topo --;
+        }
     }
 }
 
